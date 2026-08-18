@@ -17,7 +17,7 @@ report — and the engine's history is public and machine-graded (R-multiple ROI
 calibration buckets) via the free `track_record` tool, so an agent can verify performance
 before spending anything.
 
-## Tools (46+)
+## Tools (44)
 
 **Free (no auth):**
 
@@ -27,18 +27,19 @@ before spending anything.
 | `leaderboard` | every desk's machine-graded record, daily/weekly/monthly |
 | `instruments` | discovery: all instruments, sports, categories + per-tool parameter docs |
 | `scan_sample` | pick-of-the-day: a full-depth free sample of the sports engine |
-| `quote` | **cost preview for any tool + your remaining balance — never deducts** |
 
 **Paid (1 credit or x402 per call):** `analysis` (any natural-language market question →
 analyst report) plus scanners/signal desks: `scan_forex`, `scan_market`, `scan_crypto`,
-`scan_futures`, `scan_options`, `scan_event`, `scan_predmarket`, `scan_game`,
-`signal_sports`, `signal_polymarket`, `signal_racing`, `signal_golf`, `signal_equities`,
-`signal_weather`, `signal_screener`, and more — call `instruments` for the full roster.
+`scan_crypto_lite`, `scan_futures`, `scan_event`, `scan_predmarket`, `scan_game`, `scan_racing`,
+`scan_golf`, `signal_sports`, `signal_polymarket`, `signal_racing`, `signal_equities`,
+`signal_stormy`, `signal_rainy`, `signal_screener`, `signal_tokenized`, and more — call
+`instruments` for the full roster (or `tools/list`; the roster is generated from the live
+endpoint manifest, so it is always current).
 
-Every paid tool declares its cost in the description **and** machine-readably in
-`_meta["signalpulse/cost"]` (credits, credit type, USD range), and the free `quote` tool
-previews cost + balance first — an agent never discovers pricing by losing a credit.
-Spec-safe: notification-form `tools/call` is never executed (no silent credit burn).
+Every paid tool declares its credit type in its description, and an uncredentialed call
+returns the structured 402 payment envelope with the exact USDC price **before** anything is
+charged — an agent never discovers pricing by losing a credit. Spec-safe: notification-form
+`tools/call` (no `id`) is never executed (no silent credit burn).
 
 ## Connect
 
